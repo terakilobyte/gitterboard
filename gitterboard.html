@@ -1,0 +1,37 @@
+<head>
+
+	<title>Gitterboard</title>
+</head>
+<body>
+	<div class="container">
+	<header><h1>Gitterboard</h1></header>
+	
+	{{> gitterboard}}
+	<h3>Internationals</h3>
+	{{> cambodia}}
+
+	<footer class="footer">{{> copyright}}</footer>
+	</div>
+</body>
+
+
+<template name="gitterboard">
+	<h4>Campers: ( {{counter}} )</h4>
+	<ul class="list-group">
+	{{#each camper}}
+	<li class="list-group-item">{{name}}: {{score}}</li>
+	{{/each}}
+	</ul>
+</template>
+
+<template name="cambodia">
+	<ul class="list-group">
+		<li class="list-group-item">Pie</li>
+		<li class="list-group-item">Cake</li>
+		<li class="list-group-item active"><span class="glyphicon glyphicon-file"></span>{{camper2}}<span class="badge">123</span></li>
+	</ul>
+</template>
+
+<template name="copyright">
+	{{copyright}}
+</template>
