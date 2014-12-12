@@ -1,0 +1,1 @@
+CampersList = new Mongo.Collection('campers');
