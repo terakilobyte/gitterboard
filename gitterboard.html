@@ -18,10 +18,19 @@
 <template name="gitterboard">
 	<h4>Campers: ( {{counter}} )</h4>
 	<ul class="list-group">
+
 	{{#each camper}}
 	<li class="{{selectedClass}} camper list-group-item">{{name}}: <span class="badge">{{score}}</span></li>
 	{{/each}}
 	</ul>
+	{{#if showSelectedCamper}}
+	<ul class="list-group-item">
+		<li class="camper list-group-item">Selected Camper: {{showSelectedCamper.name}}
+		<input type="button" class="decrement" value="Take 5 Points">
+		<input type="button" class="increment" value="Give 5 Points">
+		</li>
+	</ul>
+	{{/if}}
 </template>
 
 <template name="cambodia">

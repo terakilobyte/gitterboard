@@ -6,21 +6,34 @@ if(Meteor.isClient){
 		'click .camper': function() {
 			var camperId = this._id;
 			Session.set('selectedCamper', camperId);
+		},
+		'click .increment': function() {
+			var selectedCamper = Session.get('selectedCamper');
+			console.log(selectedCamper);
+			CampersList.update(selectedCamper, {$inc: {score: 5}});
+		},
+		'click .decrement': function() {
+			var selectedCamper = Session.get('selectedCamper');
+			console.log(selectedCamper);
+			CampersList.update(selectedCamper, {$inc: {score: -5}});
 		}
 	});
 	Template.gitterboard.helpers({
 		'camper': function(){
-			return CampersList.find();
+			return CampersList.find({}, {sort: {score: -1, name: 1}});
 		},
 		'counter': function(){
 			return CampersList.find().count();
 		},
 		'selectedClass': function() {
 			var camperId = this._id;
-			var selectedCamper = Session.get('selectedCamper')
+			var selectedCamper = Session.get('selectedCamper');
 			if(camperId == selectedCamper)
 			return "selected";
-
+		},
+		'showSelectedCamper': function() {
+			var selectedCamper = Session.get('selectedCamper');
+			return CampersList.findOne(selectedCamper);
 		}
 	});
 	
