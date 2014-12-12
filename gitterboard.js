@@ -10,17 +10,16 @@ if(Meteor.isClient){
 		},
 		'click .increment': function() {
 			var selectedCamper = Session.get('selectedCamper');
-			console.log(selectedCamper);
-			CampersList.update(selectedCamper, {$inc: {score: 5}});
+			Meteor.call('modifyCamperScore', selectedCamper, 5);
 		},
 		'click .decrement': function() {
 			var selectedCamper = Session.get('selectedCamper');
-			console.log(selectedCamper);
-			CampersList.update(selectedCamper, {$inc: {score: -5}});
+			Meteor.call('modifyCamperScore', selectedCamper, -5)
+			
 		},
 		'click .remove': function() {
 			var selectedCamper = Session.get('selectedCamper');
-			CampersList.remove(selectedCamper);
+			Meteor.call('removeCamperData', selectedCamper);
 		}
 	});
 	Template.gitterboard.helpers({
@@ -54,12 +53,7 @@ if(Meteor.isClient){
 		'submit form': function(event){
 			event.preventDefault();
 			var camperNameVar = event.target.camperName.value;
-			var currentUserId = Meteor.userId();
-			CampersList.insert({
-				name: camperNameVar,
-				score: 0,
-				createdBy: currentUserId
-			});
+			Meteor.call('insertCamperData', camperNameVar);
 			event.target.camperName.value = "";
 		}
 	});
@@ -77,5 +71,24 @@ if(Meteor.isServer){
 		// inside the publish function
 		var currentUserId = this.userId;
 		return CampersList.find({createdBy: currentUserId});
+	});
+
+	Meteor.methods({
+		'insertCamperData': function(camperNameVar){
+			var currentUserId = Meteor.userId();
+			CampersList.insert({
+				name: camperNameVar,
+				score: 0,
+				createdBy: currentUserId
+			});
+		},
+
+		'removeCamperData':function(selectedCamper){
+			CampersList.remove(selectedCamper);
+		},
+
+		'modifyCamperScore': function(selectedCamper, scoreValue) {
+			CampersList.update(selectedCamper, {$inc: {score: scoreValue}});
+		}
 	});
 }
