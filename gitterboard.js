@@ -1,6 +1,7 @@
 CampersList = new Mongo.Collection('campers');
 
 if(Meteor.isClient){
+	Meteor.subscribe('theCampers');
 	Template.gitterboard.events({
 		//events go here
 		'click .camper': function() {
@@ -25,8 +26,7 @@ if(Meteor.isClient){
 	Template.gitterboard.helpers({
 		'camper': function(){
 			var currentUserId = Meteor.userId();
-			return CampersList.find({createdBy: currentUserId}, 
-				                    {sort: {score: -1, name: 1}});
+			return CampersList.find({}, {sort: {score: -1, name: 1}});
 		},
 		'counter': function(){
 			return CampersList.find().count();
@@ -73,5 +73,9 @@ if(Meteor.isClient){
 }
 
 if(Meteor.isServer){
-
+	Meteor.publish('theCampers', function() {
+		// inside the publish function
+		var currentUserId = this.userId;
+		return CampersList.find({createdBy: currentUserId});
+	});
 }
