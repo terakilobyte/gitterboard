@@ -23,12 +23,12 @@
 	<ul class="list-group">
 
 	{{#each camper}}
-	<li class="{{selectedClass}} list-group-item">{{name}}: <span class="badge">{{score}}</span></li>
+	<li class="{{selectedClass}} camper list-group-item">{{name}}: <span class="badge">{{score}}</span></li>
 	{{/each}}
 	</ul>
 	{{#if showSelectedCamper}}
 	<ul class="list-group-item">
-		<li class="camper list-group-item">Selected Camper: {{showSelectedCamper.name}}
+		<li class="list-group-item">Selected Camper: {{showSelectedCamper.name}}
 		<input type="button" class="decrement" value="Take 5 Points">
 		<input type="button" class="increment" value="Give 5 Points">
 		<input type="button" class="remove" value="Remove Camper">
