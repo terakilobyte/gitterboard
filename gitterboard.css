@@ -2,19 +2,33 @@
 @import url(http://fonts.googleapis.com/css?family=Slabo+27px);
 h1 {
 	font-family: 'Slabo 27px', serif;
-	color: pink;
+	color: #fff;
+}
+.header {
+	text-align: center;
+	height: 70px;
+	background-color: rgb(58,32,11);
+	width: 100%;
+	top:0px;
+	position: fixed;
+	z-index: 1000;
+}
+.footer {
+	color: rgb(58,32,11);
+	background-color: #F7A1C4;
+	width: 100%;
+	bottom: 0px;
+	position: fixed;
+	height: 40px;
+	text-align: center;
+	padding-top: 10px;
+	font-size: 20px;
 }
 
-.footer {
-	color: blue;
-	background-color: #be4;
-	width: 100%;
-	bottom: 10px;
-	position: relative;
-	height: 60px;
-	text-align: center;
-	padding-top: 20px;
-	font-size: 14px;
+.container {
+	margin-top: 100px;
 
-
+}
+body {
+	background-color: #94BFA7;
 }
