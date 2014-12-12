@@ -1,6 +1,13 @@
 CampersList = new Mongo.Collection('campers');
 
 if(Meteor.isClient){
+	Template.gitterboard.events({
+		//events go here
+		'click .camper': function() {
+			// code goes here
+			console.log("you clicked a camper element");
+		}
+	});
 	Template.gitterboard.helpers({
 		'camper': function(){
 			return CampersList.find();
