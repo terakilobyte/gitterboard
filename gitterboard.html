@@ -16,7 +16,8 @@
 
 
 <template name="gitterboard">
-	<h4>Campers: ( {{counter}} )</h4>
+	<h3>Campers: ( {{counter}} )</h3>
+	{{> addCamperForm}}
 	<ul class="list-group">
 
 	{{#each camper}}
@@ -28,6 +29,7 @@
 		<li class="camper list-group-item">Selected Camper: {{showSelectedCamper.name}}
 		<input type="button" class="decrement" value="Take 5 Points">
 		<input type="button" class="increment" value="Give 5 Points">
+		<input type="button" class="remove" value="Remove Camper">
 		</li>
 	</ul>
 	{{/if}}
@@ -39,6 +41,16 @@
 		<li class="list-group-item"><span class="icon-large icon-cup"></span>Trophy<span class="badge">45</span></li>
 		<li class="list-group-item"><span class="icon-large icon-pizza"></span>Pizza<span class="badge">123</span></li>
 	</ul>
+</template>
+
+<template name="addCamperForm">
+	<form>
+	<div class=""><ul class="list-group"><li class="list-group-item">
+		<input type="text" name="camperName" class="form-control" placeholder="Add Camper"></li>
+		<li class="list-group-item">
+		<input type="submit" value="Submit" class="btn-primary btn-xs"></li></ul>
+	</div>
+	</form>
 </template>
 
 <template name="copyright">

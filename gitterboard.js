@@ -16,6 +16,10 @@ if(Meteor.isClient){
 			var selectedCamper = Session.get('selectedCamper');
 			console.log(selectedCamper);
 			CampersList.update(selectedCamper, {$inc: {score: -5}});
+		},
+		'click .remove': function() {
+			var selectedCamper = Session.get('selectedCamper');
+			CampersList.remove(selectedCamper);
 		}
 	});
 	Template.gitterboard.helpers({
@@ -40,6 +44,19 @@ if(Meteor.isClient){
 	Template.cambodia.helpers({
 		'camper2': function(){
 		   return "My intuition kicked in!";
+		}
+	});
+
+	Template.addCamperForm.events({
+		// events go here.
+		'submit form': function(event){
+			event.preventDefault();
+			var camperNameVar = event.target.camperName.value;
+			CampersList.insert({
+				name: camperNameVar,
+				score: 0
+			});
+			event.target.camperName.value = "";
 		}
 	});
 
