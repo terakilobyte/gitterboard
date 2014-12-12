@@ -24,7 +24,9 @@ if(Meteor.isClient){
 	});
 	Template.gitterboard.helpers({
 		'camper': function(){
-			return CampersList.find({}, {sort: {score: -1, name: 1}});
+			var currentUserId = Meteor.userId();
+			return CampersList.find({createdBy: currentUserId}, 
+				                    {sort: {score: -1, name: 1}});
 		},
 		'counter': function(){
 			return CampersList.find().count();
@@ -52,9 +54,11 @@ if(Meteor.isClient){
 		'submit form': function(event){
 			event.preventDefault();
 			var camperNameVar = event.target.camperName.value;
+			var currentUserId = Meteor.userId();
 			CampersList.insert({
 				name: camperNameVar,
-				score: 0
+				score: 0,
+				createdBy: currentUserId
 			});
 			event.target.camperName.value = "";
 		}

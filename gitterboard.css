@@ -27,7 +27,7 @@ h1 {
 
 .container {
 	margin-top: 100px;
-
+	height: 130%;
 }
 body {
 	background-color: #94BFA7;
@@ -35,4 +35,11 @@ body {
 
 .selected{
 	background-color: rgb(225, 228, 229);
+}
+
+.login-buttons {
+	float:right;
+}
+#login-dropdown-list.accounts-dialog {
+	position: relative;
 }
