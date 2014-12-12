@@ -4,8 +4,8 @@ if(Meteor.isClient){
 	Template.gitterboard.events({
 		//events go here
 		'click .camper': function() {
-			// code goes here
-			console.log("you clicked a camper element");
+			var camperId = this._id;
+			Session.set('selectedCamper', camperId);
 		}
 	});
 	Template.gitterboard.helpers({
@@ -14,6 +14,13 @@ if(Meteor.isClient){
 		},
 		'counter': function(){
 			return CampersList.find().count();
+		},
+		'selectedClass': function() {
+			var camperId = this._id;
+			var selectedCamper = Session.get('selectedCamper')
+			if(camperId == selectedCamper)
+			return "selected";
+
 		}
 	});
 	
